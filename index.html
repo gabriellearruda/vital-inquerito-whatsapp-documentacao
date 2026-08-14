@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inquérito APS Recife</title>
+<style>
+:root {
+  --bg:#F5F7FB;--surface:#FFFFFF;--surface-alt:#EFF2FA;--border:#DDE3EF;
+  --text-h:#1A2B45;--text-b:#3B4A60;--text-m:#7080A0;
+  --accent:#0A8B72;--accent-lo:#E2F5F0;--accent-txt:#096B58;
+  --amber:#C47A10;--amber-lo:#FEF3E0;--amber-txt:#9B5E08;
+  --blue:#1E4FAF;--blue-lo:#EAF0FF;
+  --header-h:68px;--tab-h:52px;--max:880px;--r:8px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1622;--surface:#162030;--surface-alt:#1C2A40;--border:#253550;
+  --text-h:#E4EAF8;--text-b:#A0B0CC;--text-m:#546080;
+  --accent:#16C8A0;--accent-lo:#0A2520;--accent-txt:#20DFB5;
+  --amber:#F0A030;--amber-lo:#281A05;--amber-txt:#FFB84D;
+  --blue:#6090F0;--blue-lo:#101C38;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1622;--surface:#162030;--surface-alt:#1C2A40;--border:#253550;
+  --text-h:#E4EAF8;--text-b:#A0B0CC;--text-m:#546080;
+  --accent:#16C8A0;--accent-lo:#0A2520;--accent-txt:#20DFB5;
+  --amber:#F0A030;--amber-lo:#281A05;--amber-txt:#FFB84D;
+  --blue:#6090F0;--blue-lo:#101C38;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.65;background:var(--bg);color:var(--text-b)}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;color:var(--text-h);text-wrap:balance;line-height:1.25}
+h2{font-size:1.45rem;font-weight:700;margin-bottom:1rem}
+h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+h4{font-size:.9rem;font-weight:700;margin-bottom:.25rem}
+p{margin-bottom:.75rem}p:last-child{margin-bottom:0}
+strong{color:var(--text-h)}
+ul,ol{padding-left:1.4em;margin-bottom:.75rem}li{margin-bottom:.3rem}
+code{font-family:Menlo,Consolas,monospace;font-size:.82em;background:var(--surface-alt);padding:.1em .35em;border-radius:3px}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);height:var(--header-h);display:flex;align-items:center;padding:0 1.75rem;gap:1rem}
+.hd-icon{width:36px;height:36px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hd-icon svg{width:20px;height:20px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hd-eye{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.12rem}
+.hd-title{font-family:Georgia,serif;font-size:1rem;font-weight:700;color:var(--text-h);line-height:1.2}
+.hd-meta{margin-left:auto;display:flex;gap:.5rem;align-items:center}
+.badge{font-size:.68rem;font-weight:600;letter-spacing:.04em;padding:.2rem .55rem;border-radius:4px;white-space:nowrap}
+.badge-teal{background:var(--accent-lo);color:var(--accent-txt)}
+.badge-amber{background:var(--amber-lo);color:var(--amber-txt)}
+.badge-blue{background:var(--blue-lo);color:var(--blue)}
+
+/* TABS */
+.tab-nav{position:sticky;top:var(--header-h);z-index:90;background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 1.1rem;height:var(--tab-h);border:none;background:none;cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text-m);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;display:flex;align-items:center;gap:.35rem}
+.tab-btn:hover{color:var(--text-h)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-num{font-size:.62rem;font-weight:700;letter-spacing:.05em;opacity:.55}
+
+/* CONTENT */
+.tab-content{display:none}.tab-content.active{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:2.5rem 1.75rem 4rem}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;margin-bottom:1.25rem}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;margin-bottom:1.25rem}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin-bottom:1.25rem}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem}
+.stat-val{font-family:Georgia,serif;font-size:2rem;font-weight:700;color:var(--text-h);line-height:1;margin-bottom:.25rem;font-variant-numeric:tabular-nums}
+.stat-lbl{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m)}
+.stat-sub{font-size:.8rem;color:var(--text-b);margin-top:.3rem}
+
+/* CALLOUTS */
+.callout{border-left:3px solid var(--accent);background:var(--accent-lo);padding:.9rem 1.1rem;border-radius:0 var(--r) var(--r) 0;margin-bottom:1.25rem}
+.callout.amber{border-left-color:var(--amber);background:var(--amber-lo)}
+.callout.blue{border-left-color:var(--blue);background:var(--blue-lo)}
+.clbl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-txt);margin-bottom:.3rem}
+.callout.amber .clbl{color:var(--amber-txt)}
+.callout.blue .clbl{color:var(--blue)}
+
+/* SECTION LABEL */
+.slbl{font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.45rem}
+
+/* DIVIDER */
+hr.div{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+/* PARTNERS */
+.partners{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:1.5rem}
+.partner{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.55rem .9rem;font-size:.8rem;font-weight:600;color:var(--text-h);flex:1;min-width:135px}
+.prole{font-size:.67rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-m);margin-top:.15rem}
+
+/* RQ */
+.rq{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:.9rem}
+.rqn{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--accent-lo);color:var(--accent-txt);font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.rqt{font-size:.88rem;color:var(--text-b);padding-top:.3rem}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:1.9rem}
+.tl::before{content:'';position:absolute;left:.45rem;top:.5rem;bottom:.5rem;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:1.4rem}
+.tl-item::before{content:'';position:absolute;left:-1.55rem;top:.4rem;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--accent)}
+.tl-date{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:.15rem}
+.tl-title{font-weight:700;color:var(--text-h);font-size:.9rem;margin-bottom:.2rem}
+.tl-desc{font-size:.85rem;color:var(--text-b)}
+
+/* TABLE */
+.tw{overflow-x:auto;margin-bottom:1.25rem}
+table{width:100%;border-collapse:collapse;font-size:.82rem;font-variant-numeric:tabular-nums}
+th{text-align:left;padding:.55rem .7rem;font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-m);background:var(--surface-alt);border-bottom:1px solid var(--border)}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--border);color:var(--text-b)}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--surface-alt)}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.bold td{font-weight:700;color:var(--text-h)}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.25rem}
+.fbox{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.7rem 1rem;font-size:.84rem}
+.fbox strong{display:block;color:var(--text-h);margin-bottom:.1rem}
+.fbox span{color:var(--text-m);font-size:.77rem}
+.farrow{color:var(--text-m);text-align:center;font-size:1rem;line-height:1}
+
+/* AB */
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+.ab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem}
+.ab-lbl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:4px;display:inline-block;margin-bottom:.65rem}
+.ab-a{background:var(--blue-lo);color:var(--blue)}
+.ab-b{background:var(--accent-lo);color:var(--accent-txt)}
+
+/* FILES */
+.files{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.25rem}
+.fitem{display:flex;align-items:center;gap:.7rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:.65rem .9rem}
+.ficon{font-size:.72rem;font-weight:700;flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px}
+.fr{background:#E8F4FF;color:#1A5CC8}.fpdf{background:#FFE8E8;color:#B81A1A}.fdoc{background:#E8F0FF;color:#1A44CC}.fcsv{background:#E8FFE8;color:#1A661A}.fxlsx{background:#E8FFF0;color:#0A6633}
+.fname{font-size:.83rem;font-weight:600;color:var(--text-h)}
+.fdesc{font-size:.74rem;color:var(--text-m);margin-top:.1rem}
+
+/* LEARNING */
+.litem{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;margin-bottom:.75rem;border-left:3px solid transparent}
+.litem.good{border-left-color:var(--accent)}
+.litem.bad{border-left-color:var(--amber)}
+.litem.rec{border-left-color:var(--blue)}
+.ltag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.ltag.good{color:var(--accent-txt)}.ltag.bad{color:var(--amber-txt)}.ltag.rec{color:var(--blue)}
+
+/* PLACEHOLDER */
+.ph{border:1px dashed var(--border);border-radius:var(--r);padding:1rem;margin-bottom:1rem;text-align:center}
+.ph p{color:var(--text-m);font-size:.83rem}
+
+@media(max-width:640px){
+  .wrap{padding:1.5rem 1rem 3rem}
+  .hd-meta{display:none}
+  .ab{grid-template-columns:1fr}
+  .stat-val{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hd-icon">
+    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  </div>
+  <div>
+    <div class="hd-eye">Mais Dados Mais Saúde</div>
+    <div class="hd-title">Inquérito APS Recife</div>
+  </div>
+  <div class="hd-meta">
+    <span class="badge badge-teal">Piloto realizado</span>
+    <span class="badge badge-amber">Coleta principal</span>
+    <span class="badge badge-blue">USF vs USF+</span>
+  </div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" data-tab="contexto" role="tab" aria-selected="true"><span class="tab-num">01</span> Contexto e Objetivos</button>
+  <button class="tab-btn" data-tab="tecnico" role="tab" aria-selected="false"><span class="tab-num">02</span> Aspectos Técnicos</button>
+  <button class="tab-btn" data-tab="governanca" role="tab" aria-selected="false"><span class="tab-num">03</span> Governança e Ética</button>
+  <button class="tab-btn" data-tab="operacao" role="tab" aria-selected="false"><span class="tab-num">04</span> Operação e Campo</button>
+  <button class="tab-btn" data-tab="arquivos" role="tab" aria-selected="false"><span class="tab-num">05</span> Arquivos de Referência</button>
+  <button class="tab-btn" data-tab="aprendizados" role="tab" aria-selected="false"><span class="tab-num">06</span> Desafios e Aprendizados</button>
+</nav>
+
+<!-- ══════════ TAB 1 — CONTEXTO ══════════ -->
+<div id="tab-contexto" class="tab-content active" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Programa</p>
+  <h2>Avaliação de Acesso e Qualidade da APS em Recife</h2>
+  <p>O <strong>Mais Dados Mais Saúde (MDMS)</strong> é um programa de inovação no levantamento de dados em saúde que testa metodologias eficazes de coleta e monitora temas emergentes ou pouco explorados. Em Recife, a parceria com a Prefeitura permitiu conduzir um inquérito completamente via WhatsApp — metodologia inédita no município — avaliando a Atenção Primária à Saúde (APS) com base na percepção dos próprios usuários cadastrados no e-SUS APS.</p>
+
+  <div class="callout">
+    <div class="clbl">Questão central</div>
+    <p>O programa municipal USF+ produz diferenças perceptíveis na experiência dos usuários em relação às Unidades de Saúde da Família convencionais (USF)?</p>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Parceiros</p>
+  <h2>Consórcio do projeto</h2>
+  <div class="partners">
+    <div class="partner">Umane<div class="prole">Coordenação executiva</div></div>
+    <div class="partner">Vital Strategies<div class="prole">Parceria técnica principal</div></div>
+    <div class="partner">UFPel<div class="prole">Metodologia e análise estatística</div></div>
+    <div class="partner">Instituto Devive<div class="prole">Apoio institucional</div></div>
+    <div class="partner">Resolve to Save Lives<div class="prole">Apoio institucional</div></div>
+    <div class="partner">SMS Recife<div class="prole">Dados e parceria local</div></div>
+  </div>
+
+  <div class="callout blue">
+    <div class="clbl">Histórico</div>
+    <p>O MDMS sucede o <strong>Covitel</strong> (inquérito telefônico sobre DCNT, edições 2022 e 2023). Em Recife, a metodologia avança para coleta via WhatsApp — mais acessível, mais barata e escalável para populações já cadastradas em sistemas de saúde.</p>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Perguntas de pesquisa</p>
+  <h2>O que a pesquisa quer responder</h2>
+
+  <div class="rq"><div class="rqn">1</div><div class="rqt">O programa USF+ produz diferenças perceptíveis no <strong>acesso</strong> aos serviços de APS em relação às USF convencionais?</div></div>
+  <div class="rq"><div class="rqn">2</div><div class="rqt">Há diferenças na <strong>qualidade percebida</strong> do cuidado (longitudinalidade, integralidade, coordenação) entre os dois modelos de unidade?</div></div>
+  <div class="rq"><div class="rqn">3</div><div class="rqt">Como <strong>perfil sociodemográfico</strong> (sexo, faixa etária, raça/cor) e <strong>território</strong> (Distrito Sanitário) modulam essas diferenças?</div></div>
+  <div class="rq"><div class="rqn">4</div><div class="rqt">Qual a viabilidade operacional de um <strong>inquérito de saúde em larga escala via WhatsApp</strong> no contexto da APS municipal?</div></div>
+
+  <hr class="div">
+  <p class="slbl">Linha do tempo</p>
+  <h2>Etapas do projeto</h2>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-date">Fase 1 — Preparação</div>
+      <div class="tl-title">Desenho metodológico e plano amostral</div>
+      <div class="tl-desc">Definição dos estratos (DS × tipo de unidade), cálculo amostral, elaboração do instrumento baseado no PCATool-Brasil e construção da base de convites a partir do e-SUS APS.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Fase 2 — Piloto</div>
+      <div class="tl-title">Estudo-piloto nos DS 1, 2 e 3</div>
+      <div class="tl-desc">2.400 convites distribuídos em 6 estratos (DS × tipo de unidade), com teste A/B entre questionário completo (versão A, 10–15 min) e reduzido (versão B, 5–8 min). Janela de coleta de 14 dias, lembrete no dia 8.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Fase 3 — Calibração</div>
+      <div class="tl-title">Análise do piloto e recalibração</div>
+      <div class="tl-desc">Análise das taxas de resposta por estrato e versão, escolha do instrumento definitivo, recalibração do número de convites e definição da estratégia de ondas para a coleta principal.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Fase 4 — Coleta principal</div>
+      <div class="tl-title">Disparo em 5 ondas nos 8 DS de Recife</div>
+      <div class="tl-desc">Coleta em larga escala com amostra probabilística estratificada em todos os Distritos Sanitários, com pós-estratificação por sexo, faixa etária e raça/cor.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Fase 5 — Análise e disseminação</div>
+      <div class="tl-title">Resultados e publicação</div>
+      <div class="tl-desc">Análise com ponderação amostral, produção de relatórios para a SMS Recife e parceiros, publicação científica.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ TAB 2 — TÉCNICO ══════════ -->
+<div id="tab-tecnico" class="tab-content" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Arquitetura</p>
+  <h2>Como a solução funciona</h2>
+  <div class="flow">
+    <div class="fbox"><strong>e-SUS APS — Base cadastral</strong><span>Usuários ≥18 anos com WhatsApp registrado, classificados por USF/USF+ e Distrito Sanitário</span></div>
+    <div class="farrow">↓</div>
+    <div class="fbox"><strong>Scripts R — Plano amostral</strong><span>Estratificação (DS × tipo de unidade), sorteio PPT, alocação demográfica, geração da lista de disparo e lista de reserva</span></div>
+    <div class="farrow">↓</div>
+    <div class="fbox"><strong>Plataforma de disparo via WhatsApp</strong><span>Envio em lote de convites personalizados — Ter a Qui, 9–11h. Lembrete no dia 8 (piloto)</span></div>
+    <div class="farrow">↓</div>
+    <div class="fbox"><strong>Questionário conversacional</strong><span>Fluxo guiado via WhatsApp — versão A (completa, 10–15 min) ou versão B (reduzida, 5–8 min), atribuída aleatoriamente</span></div>
+    <div class="farrow">↓</div>
+    <div class="fbox"><strong>Base de respostas → R → Análise ponderada</strong><span>Pós-estratificação por sexo, faixa etária e raça/cor; estimativas com erro padrão corrigido pelo design effect</span></div>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Instrumento</p>
+  <h2>Teste A/B de versões do questionário</h2>
+  <p>No piloto, cada usuário foi atribuído aleatoriamente a uma das duas versões, balanceadas por estrato × sexo × tempo desde o último atendimento.</p>
+  <div class="ab">
+    <div class="ab-card">
+      <div class="ab-lbl ab-a">Versão A — Completa</div>
+      <h3>Questionário integral</h3>
+      <ul>
+        <li><strong>Duração:</strong> 10–15 minutos</li>
+        <li>Todos os atributos PCATool-Brasil</li>
+        <li>Maior riqueza analítica</li>
+        <li>Maior risco de abandono</li>
+      </ul>
+    </div>
+    <div class="ab-card">
+      <div class="ab-lbl ab-b">Versão B — Reduzida</div>
+      <h3>Questionário curto</h3>
+      <ul>
+        <li><strong>Duração:</strong> 5–8 minutos</li>
+        <li>Perguntas prioritárias</li>
+        <li>Esperada maior taxa de resposta</li>
+        <li>Menor profundidade analítica</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout amber">
+    <div class="clbl">Critério de decisão pós-piloto</div>
+    <p>A versão B será adotada na coleta principal se sua taxa de resposta for ≥50% superior à da versão A sem perda relevante de qualidade. Caso contrário, mantém-se a versão A pela maior riqueza analítica.</p>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Plano amostral</p>
+  <h2>Desenho probabilístico estratificado em dois estágios</h2>
+
+  <div class="grid3">
+    <div class="stat"><div class="stat-val">16</div><div class="stat-lbl">Estratos máximos</div><div class="stat-sub">8 DS × 2 tipos de unidade</div></div>
+    <div class="stat"><div class="stat-val">384</div><div class="stat-lbl">Amostra base / grupo</div><div class="stat-sub">p=0,50 · e=5% · IC 95%</div></div>
+    <div class="stat"><div class="stat-val">1,5–2,0</div><div class="stat-lbl">Design effect (deff)</div><div class="stat-sub">Ajuste para conglomerados</div></div>
+    <div class="stat"><div class="stat-val">576–768</div><div class="stat-lbl">Respostas necessárias</div><div class="stat-sub">Por grupo, após correção deff</div></div>
+    <div class="stat"><div class="stat-val">7–10%</div><div class="stat-lbl">Taxa de resposta</div><div class="stat-sub">Estimada para WhatsApp/município</div></div>
+    <div class="stat"><div class="stat-val">2–5 mil</div><div class="stat-lbl">Convites por grupo</div><div class="stat-sub">Sobredimensionamento p/ não resposta</div></div>
+  </div>
+
+  <p><strong>1º estágio:</strong> seleção de unidades de saúde dentro de cada estrato com probabilidade proporcional ao tamanho (PPT), usando o número de usuários adultos com WhatsApp cadastrado como medida de tamanho.</p>
+  <p><strong>2º estágio:</strong> sorteio aleatório simples dos usuários elegíveis dentro de cada unidade selecionada, com sobredimensionamento conforme taxa de resposta esperada.</p>
+
+  <hr class="div">
+  <p class="slbl">Piloto — Amostra</p>
+  <h2>Distribuição dos 2.400 convites do piloto</h2>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Distrito Sanitário</th><th>Tipo</th><th class="num">Cadastrados</th><th class="num">Convites</th><th class="num">% da pop.</th><th class="num">Resp. esperadas</th></tr></thead>
+      <tbody>
+        <tr><td>DS 1</td><td>USF</td><td class="num">3.378</td><td class="num">400</td><td class="num">11,8%</td><td class="num">30</td></tr>
+        <tr><td>DS 1</td><td>USF+</td><td class="num">31.473</td><td class="num">400</td><td class="num">1,3%</td><td class="num">30</td></tr>
+        <tr><td>DS 2</td><td>USF</td><td class="num">35.279</td><td class="num">400</td><td class="num">1,1%</td><td class="num">30</td></tr>
+        <tr><td>DS 2</td><td>USF+</td><td class="num">87.218</td><td class="num">400</td><td class="num">0,5%</td><td class="num">30</td></tr>
+        <tr><td>DS 3</td><td>USF</td><td class="num">4.808</td><td class="num">400</td><td class="num">8,3%</td><td class="num">30</td></tr>
+        <tr><td>DS 3</td><td>USF+</td><td class="num">36.968</td><td class="num">400</td><td class="num">1,1%</td><td class="num">30</td></tr>
+        <tr class="bold"><td>Total</td><td></td><td class="num">199.124</td><td class="num">2.400</td><td class="num">1,2%</td><td class="num">~180</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.82rem;color:var(--text-m)">Precisão por estrato: ±2,6 p.p. (taxa 7,5%, IC 95%). Variável adicional: tempo desde último atendimento (≤90 dias / 91d–1 ano / &gt;1 ano / sem info).</p>
+
+  <hr class="div">
+  <p class="slbl">Análise</p>
+  <h2>Pipeline em R</h2>
+  <div class="callout">
+    <div class="clbl">Pacotes principais</div>
+    <p><code>tidyverse</code> · <code>survey</code> · <code>srvyr</code> · <code>gtsummary</code> · <code>sidrar</code> · <code>readxl</code> · <code>janitor</code></p>
+  </div>
+  <h3>Pontos de atenção técnica</h3>
+  <ul>
+    <li>Proporção de números inválidos na base e-SUS APS — meta: &lt;20% por estrato antes do disparo principal</li>
+    <li>Atribuição A/B com balanceamento por estrato × sexo × tempo desde último atendimento</li>
+    <li>Pós-estratificação por raça/cor dependente da qualidade do campo na base cadastral</li>
+    <li>IDs do piloto excluídos da lista principal e da lista de reserva para evitar duplicidade</li>
+    <li>Pesos amostrais calculados com correção pelo design effect estimado no próprio piloto</li>
+  </ul>
+
+</div>
+</div>
+
+<!-- ══════════ TAB 3 — GOVERNANÇA ══════════ -->
+<div id="tab-governanca" class="tab-content" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Ética e Regulação</p>
+  <h2>Governança e proteção dos participantes</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Aprovação ética</h3>
+      <p>A pesquisa deve ser submetida e aprovada por Comitê de Ética em Pesquisa (CEP) conforme as Resoluções CNS nº 466/2012 e 510/2016.</p>
+      <div class="ph" style="margin-top:.75rem;margin-bottom:0"><p>🔲 Número do parecer CEP · CAAE · Data de aprovação — a preencher</p></div>
+    </div>
+    <div class="card">
+      <h3>LGPD</h3>
+      <p>Tratamento dos dados cadastrais fundamentado nas bases legais de <strong>interesse público</strong> e <strong>tutela da saúde</strong> (Art. 7º e 11, Lei nº 13.709/2018). A Secretaria Municipal de Saúde de Recife atua como controladora dos dados.</p>
+    </div>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Consentimento</p>
+  <h2>TCLE via WhatsApp</h2>
+  <p>O Termo de Consentimento Livre e Esclarecido é apresentado na primeira mensagem do questionário. O participante deve responder afirmativamente para prosseguir.</p>
+  <ul>
+    <li>Linguagem acessível, sem jargão técnico</li>
+    <li>Identificação clara da SMS Recife e dos parceiros do programa</li>
+    <li>Voluntariedade e possibilidade de interrupção a qualquer momento</li>
+    <li>Informação de que respostas são tratadas de forma agregada e anônima</li>
+    <li>Canal de contato visível para dúvidas</li>
+  </ul>
+  <div class="ph"><p>📝 Texto completo do TCLE — a preencher / anexar</p></div>
+
+  <hr class="div">
+  <p class="slbl">Papéis e responsabilidades</p>
+  <h2>Quem faz o quê</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Ator</th><th>Responsabilidade principal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Umane</strong></td><td>Coordenação geral, comunicação entre parceiros, entrega de relatórios</td></tr>
+        <tr><td><strong>Vital Strategies</strong></td><td>Metodologia, análise de dados, controle de qualidade das respostas</td></tr>
+        <tr><td><strong>UFPel</strong></td><td>Suporte técnico ao plano amostral e à análise estatística</td></tr>
+        <tr><td><strong>SMS Recife</strong></td><td>Fornecimento da base e-SUS APS, aprovação institucional, suporte local</td></tr>
+        <tr><td><strong>Plataforma WhatsApp</strong></td><td>Disparo de mensagens, coleta de respostas, envio de lembretes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Casos sensíveis</p>
+  <h2>Protocolo para situações especiais</h2>
+  <div class="callout amber">
+    <div class="clbl">A detalhar</div>
+    <p>Embora seja uma pesquisa de avaliação de serviços (não clínica), situações em que o participante relata experiências negativas graves ou vulnerabilidade severa devem ter protocolo mínimo de encaminhamento definido antes do disparo principal.</p>
+  </div>
+  <ul>
+    <li>Definir mensagem de resposta automática para interrupções abruptas do questionário</li>
+    <li>Estabelecer canal de suporte acessível (número ou e-mail visível no convite)</li>
+    <li>Treinar equipe para triagem de relatos recebidos fora do fluxo normal</li>
+  </ul>
+  <div class="ph"><p>📋 Protocolo detalhado para casos sensíveis — a preencher</p></div>
+
+</div>
+</div>
+
+<!-- ══════════ TAB 4 — OPERAÇÃO ══════════ -->
+<div id="tab-operacao" class="tab-content" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Recrutamento</p>
+  <h2>Estratégia de convite e disparo</h2>
+  <div class="grid3">
+    <div class="stat"><div class="stat-val">Ter–Qui</div><div class="stat-lbl">Dias de disparo</div><div class="stat-sub">Evita segunda e fim de semana</div></div>
+    <div class="stat"><div class="stat-val">9–11h</div><div class="stat-lbl">Janela de envio</div><div class="stat-sub">Definida com equipe local da SMS</div></div>
+    <div class="stat"><div class="stat-val">14 dias</div><div class="stat-lbl">Janela do piloto</div><div class="stat-sub">1 lembrete no dia 8 para não respondentes</div></div>
+  </div>
+
+  <h3>Estrutura de ondas — Coleta principal</h3>
+  <p>A coleta principal é planejada em <strong>5 ondas de 20%</strong> da lista de convites, permitindo ajustes operacionais entre ondas com base nos resultados acumulados.</p>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-date">Ondas 1 e 2</div>
+      <div class="tl-title">Prioridade para usuários com atendimento recente (≤90 dias)</div>
+      <div class="tl-desc">Maior propensão a responder — vínculo recente aumenta reconhecimento do nome da unidade e relevância percebida do convite. Estratégia condicionada à confirmação desta hipótese pelo piloto.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Ondas 3 e 4</div>
+      <div class="tl-title">Usuários com atendimento intermediário (91 dias – 1 ano)</div>
+      <div class="tl-desc">Distribuição proporcional por estrato. Lembretes ajustados conforme taxa de resposta observada nas ondas anteriores.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Onda 5</div>
+      <div class="tl-title">Usuários com atendimento antigo (&gt;1 ano) + lista de reserva</div>
+      <div class="tl-desc">Menor propensão a responder. A lista de reserva (~50% da lista principal) é acionada se necessário para atingir metas por estrato.</div>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <div class="clbl">Lista de reserva</div>
+    <p>Arquivo <code>07_lista_reserva.csv</code> segue as mesmas proporções demográficas da lista principal. IDs do piloto excluídos de ambas as listas para evitar duplicidade de convites.</p>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Monitoramento</p>
+  <h2>Acompanhamento em tempo real</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Indicadores de entrega</h3>
+      <ul>
+        <li>Taxa de entrega das mensagens por estrato</li>
+        <li>Proporção de números inválidos — alerta se &gt;20%</li>
+        <li>Curva de respostas diárias (60–70% esperado nas primeiras 48h)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Indicadores de qualidade</h3>
+      <ul>
+        <li>Taxa de abandono por versão (A vs B)</li>
+        <li>Tempo mediano de preenchimento por versão</li>
+        <li>Proporção de respostas "não sei" por bloco</li>
+        <li>Padrões de resposta repetitiva (viés de aquiescência)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Decisões disparadas pelos resultados do piloto</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Resultado observado</th><th>Ação correspondente</th></tr></thead>
+      <tbody>
+        <tr><td>Taxa real &lt;5%</td><td>Revisar estratégia de mensagem; aumentar sobredimensionamento</td></tr>
+        <tr><td>Taxa real &gt;10%</td><td>Reduzir volume de convites; economia operacional</td></tr>
+        <tr><td>Versão B ≥50% superior em resposta</td><td>Adotar questionário reduzido na coleta principal</td></tr>
+        <tr><td>Recentes respondem significativamente mais</td><td>Priorizar usuários ≤90 dias nas ondas 1 e 2</td></tr>
+        <tr><td>Taxa difere entre USF e USF+</td><td>Sobredimensionamento calculado separadamente por tipo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">Suporte e comunicação</p>
+  <h2>Participante e parceiros</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Suporte ao participante</h3>
+      <ul>
+        <li>Canal de contato visível no convite e no início do questionário</li>
+        <li>Mensagem de agradecimento ao final do preenchimento</li>
+        <li>Resposta padrão para dúvidas frequentes via WhatsApp</li>
+      </ul>
+      <div class="ph" style="margin-top:.75rem;margin-bottom:0"><p>📞 Número / e-mail de suporte — a preencher</p></div>
+    </div>
+    <div class="card">
+      <h3>Comunicação com parceiros</h3>
+      <ul>
+        <li>Relatório semanal de andamento (taxa de resposta por estrato)</li>
+        <li>Alerta imediato em caso de taxa de entrega anormal</li>
+        <li>Reunião de balanço ao final de cada onda</li>
+      </ul>
+      <div class="ph" style="margin-top:.75rem;margin-bottom:0"><p>📅 Cadência de reuniões e canal — a preencher</p></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ TAB 5 — ARQUIVOS ══════════ -->
+<div id="tab-arquivos" class="tab-content" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Documentação</p>
+  <h2>Arquivos de referência do projeto</h2>
+
+  <h3 style="margin-bottom:.65rem">Documentos</h3>
+  <div class="files">
+    <div class="fitem"><div class="ficon fpdf">PDF</div><div><div class="fname">Especificacao_Questionarios_APS_Recife_v2.pdf</div><div class="fdesc">Especificação completa das versões A e B do questionário — instrumento baseado no PCATool-Brasil</div></div></div>
+    <div class="fitem"><div class="ficon fdoc">DOC</div><div><div class="fname">Plano Amostral.docx</div><div class="fdesc">Plano amostral completo — estratificação, cálculo amostral, alocação por estrato e critérios de seleção</div></div></div>
+    <div class="fitem"><div class="ficon fdoc">DOC</div><div><div class="fname">Metodologia resumo MDMS Recife.docx</div><div class="fdesc">Resumo metodológico — desenho, população, plano amostral, variáveis e análise</div></div></div>
+    <div class="fitem"><div class="ficon fdoc">DOC</div><div><div class="fname">Estudo Piloto — Relatório para disparo.docx</div><div class="fdesc">Planejamento detalhado do piloto — dimensionamento, estratos, hipóteses, janelas de coleta e próximos passos</div></div></div>
+  </div>
+
+  <hr class="div">
+  <h3 style="margin-bottom:.65rem">Scripts R</h3>
+  <div class="files">
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">planejamento_amostral_dados_aps.R</div><div class="fdesc">Script principal — leitura da base e-SUS APS, perfil da população, estimativas iniciais</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">planejamento_amostral_dados_aps_TIPO_UNIDADE_E_DISTRITO.R</div><div class="fdesc">Planejamento estratificado por tipo de unidade (USF/USF+) e Distrito Sanitário</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">planejamento_amostral_dados_aps_USF.R</div><div class="fdesc">Planejamento focado nas USF — alocação proporcional e sorteio PPT</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">piloto_analile_pre_coleta.R</div><div class="fdesc">Verificação da lista de disparo antes do envio do piloto</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">piloto_descritiva.R</div><div class="fdesc">Análise descritiva da lista do piloto — perfil por estrato, versão A/B e variáveis demográficas</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">piloto_grafico_lista.R</div><div class="fdesc">Gráficos e visualizações da composição da lista do piloto</div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">ponderacao_analise_mdms_recife_EXemplo.R</div><div class="fdesc">Exemplo comentado de ponderação amostral e análise com pacote <code>survey</code></div></div></div>
+    <div class="fitem"><div class="ficon fr">R</div><div><div class="fname">dados_censo_2022_RECIFE.R</div><div class="fdesc">Extração do Censo 2022 via SIDRA/IBGE para Recife — referência para pós-estratificação</div></div></div>
+  </div>
+
+  <hr class="div">
+  <h3 style="margin-bottom:.65rem">Dados</h3>
+  <div class="files">
+    <div class="fitem"><div class="ficon fcsv">CSV</div><div><div class="fname">07_lista_reserva.csv</div><div class="fdesc">Lista de reserva de participantes (~50% da lista principal) — mesmas proporções demográficas, IDs do piloto excluídos · 3,9 MB</div></div></div>
+    <div class="fitem"><div class="ficon fxlsx">XLS</div><div><div class="fname">dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx</div><div class="fdesc">Dicionário do Censo 2022 por setor censitário — referência geográfica e socioeconômica</div></div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════ TAB 6 — APRENDIZADOS ══════════ -->
+<div id="tab-aprendizados" class="tab-content" role="tabpanel">
+<div class="wrap">
+
+  <p class="slbl">Retrospectiva</p>
+  <h2>Desafios e aprendizados do projeto</h2>
+
+  <div class="callout blue">
+    <div class="clbl">Status desta seção</div>
+    <p>Será completada ao final da coleta principal. Os itens sinalizados com 🔲 são registros prospectivos identificados durante o planejamento e o piloto — hipóteses a confirmar e riscos monitorados.</p>
+  </div>
+
+  <hr class="div">
+  <p class="slbl">O que funcionou</p>
+  <div class="litem good"><div class="ltag good">✓ Funcionou</div><h4>Alocação fixa por estrato no piloto</h4><p>400 convites por estrato (em vez de proporcional ao tamanho) garantiu precisão equivalente em estratos pequenos como DS 1 × USF (apenas 3.378 cadastrados), viabilizando a comparação USF vs USF+ dentro de cada DS sem sub-representação.</p></div>
+  <div class="litem good"><div class="ltag good">✓ Funcionou</div><h4>Seleção dos DS pela equipe local da SMS</h4><p>O critério de diversidade territorial e socioeconômica dos DS 1, 2 e 3 mostrou-se adequado: os três apresentam perfis distintos de renda, ocupação urbana e composição USF/USF+, maximizando a generalização dos achados do piloto.</p></div>
+  <div class="litem good"><div class="ltag good">🔲 A confirmar</div><h4>Horário de disparo Ter–Qui, 9–11h</h4><p>Hipótese: o horário comercial matutino nos dias do meio da semana gera maior abertura e resposta do que fins de semana ou horário noturno. A curva de respostas diárias do piloto validará ou ajustará essa escolha.</p></div>
+
+  <hr class="div">
+  <p class="slbl">O que não funcionou / desafios</p>
+  <div class="litem bad"><div class="ltag bad">⚠ Desafio</div><h4>Completude do cadastro de telefones no e-SUS APS</h4><p>A proporção de cadastros com telefone celular válido e atualizado é variável por unidade e distrito. Números inválidos superiores a 20% comprometem o sobredimensionamento e podem exigir atualização da base antes da coleta principal.</p></div>
+  <div class="litem bad"><div class="ltag bad">⚠ Desafio</div><h4>Preenchimento da variável raça/cor na base cadastral</h4><p>O campo raça/cor no e-SUS APS tem cobertura irregular — alta proporção de "ignorado" em alguns DS. A pós-estratificação por raça/cor depende diretamente da qualidade desse campo; pode ser necessário calibrar apenas por sexo e faixa etária em estratos com cobertura insuficiente.</p></div>
+  <div class="litem bad"><div class="ltag bad">🔲 A monitorar</div><h4>Taxa de resposta real vs estimada</h4><p>A estimativa de 7,5% é baseada em experiências prévias da SMS, mas pode variar com o instrumento via WhatsApp no contexto de APS. Taxa abaixo de 5% implicaria revisão profunda da estratégia de mensagem e possivelmente do próprio instrumento.</p></div>
+
+  <hr class="div">
+  <p class="slbl">Recomendações para pesquisas futuras</p>
+  <div class="litem rec"><div class="ltag rec">→ Recomendação</div><h4>Protocolo de atualização periódica da base cadastral</h4><p>Construir, com a SMS Recife, um protocolo de atualização regular dos campos telefone e raça/cor no e-SUS APS — especialmente em unidades com alta rotatividade de cadastros. Isso aumenta a cobertura efetiva dos disparos e a qualidade da pós-estratificação.</p></div>
+  <div class="litem rec"><div class="ltag rec">→ Recomendação</div><h4>Banco histórico de taxas de resposta por perfil</h4><p>Registrar sistematicamente as taxas observadas por estrato, versão do questionário, horário de disparo e perfil demográfico. Esse banco se torna referência para dimensionamento de futuras pesquisas via WhatsApp no município.</p></div>
+  <div class="litem rec"><div class="ltag rec">🔲 A preencher pós-coleta</div><h4>Lições sobre o fluxo conversacional</h4><p>Registrar os pontos de abandono mais frequentes no questionário, perguntas com maior taxa de "não sei" e sugestões de melhoria do fluxo para próximas pesquisas do tipo.</p></div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab-btn');
+  var panels=document.querySelectorAll('.tab-content');
+  function activate(id){
+    tabs.forEach(function(b){
+      var on=b.dataset.tab===id;
+      b.classList.toggle('active',on);
+      b.setAttribute('aria-selected',on);
+    });
+    panels.forEach(function(p){
+      p.classList.toggle('active',p.id==='tab-'+id);
+    });
+    var btn=document.querySelector('.tab-btn[data-tab="'+id+'"]');
+    if(btn)btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }
+  tabs.forEach(function(b){
+    b.addEventListener('click',function(){activate(b.dataset.tab);});
+  });
+  var h=location.hash.replace('#','');
+  if(h&&document.getElementById('tab-'+h))activate(h);
+})();
+</script>
+</body>
+</html>
