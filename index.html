@@ -60,7 +60,7 @@ hr{border:none;border-top:1px solid var(--rule);margin:2.5rem 0}
 }
 .hd-sep{color:var(--rule);font-weight:300;font-size:1.1rem}
 .hd-sub{font-size:.82rem;color:var(--text-3)}
-.menu-btn{display:none;background:none;border:none;cursor:pointer;margin-left:auto;color:var(--text)}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);padding:.25rem;flex-shrink:0}
 .menu-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round}
 
 /* ── layout ── */
@@ -73,7 +73,7 @@ hr{border:none;border-top:1px solid var(--rule);margin:2.5rem 0}
   overflow-y:auto;padding:2rem 0 3rem;
   border-right:1px solid var(--rule);
   background:var(--bg);
-  transition:transform .22s ease;z-index:90;
+  transition:transform .22s ease;z-index:150;
 }
 .sb-group{margin-bottom:1.5rem}
 .sb-group-label{
@@ -114,12 +114,12 @@ hr{border:none;border-top:1px solid var(--rule);margin:2.5rem 0}
 .meta-v{font-size:.85rem;color:var(--text)}
 
 /* ── abstract blocks ── */
-.abstract{border-left:2px solid var(--rule);padding-left:1.25rem;margin:2rem 0}
+.abstract{margin:1.5rem 0}
 .abstract-label{
   font-family:system-ui,sans-serif;font-size:.65rem;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:.5rem;
 }
-.abstract p{font-size:.93rem;line-height:1.8;color:var(--text-2)}
+.abstract p{font-size:.95rem;line-height:1.8;color:var(--text-2)}
 
 /* ── key figures ── */
 .figures{
@@ -232,14 +232,15 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 .placeholder{color:var(--text-3);font-style:italic;font-size:.85rem;padding:.5rem 0}
 
 /* ── overlay / responsive ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:80}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:140}
 @media(max-width:720px){
   .sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}
-  .main{margin-left:0}.menu-btn{display:flex}
+  .main{margin-left:0}
+  .menu-btn{display:flex;align-items:center;justify-content:center}
+  .hd-wordmark,.hd-sep,.hd-sub{flex:1}
   .overlay.show{display:block}
   .page{padding:2rem 1.1rem 5rem}
   .ab{grid-template-columns:1fr}
-  .cover-meta{grid-template-columns:1fr 1fr}
   .fig:nth-last-child(-n+3){border-bottom:1px solid var(--rule)}
   .fig:last-child{border-bottom:none}
   .tl-item{grid-template-columns:1fr;gap:.25rem}
@@ -250,12 +251,12 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 <body>
 
 <header class="site-header">
-  <button class="menu-btn" id="menuBtn" aria-label="Menu">
-    <svg viewBox="0 0 24 24"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-  </button>
   <span class="hd-wordmark">Mais Dados Mais Saúde</span>
   <span class="hd-sep">·</span>
   <span class="hd-sub">Inquérito APS Recife</span>
+  <button class="menu-btn" id="menuBtn" aria-label="Menu" style="margin-left:auto">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+  </button>
 </header>
 
 <div class="overlay" id="overlay"></div>
@@ -266,6 +267,7 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
     <div class="sb-group">
       <span class="sb-group-label">Documentação</span>
       <button class="nav-btn active" data-tab="intro">Introdução</button>
+      <button class="nav-btn" data-tab="recife">Experiência em Recife</button>
       <button class="nav-btn" data-tab="contexto">1. Contexto e Objetivos</button>
       <button class="nav-btn" data-tab="tecnico">2. Aspectos Técnicos</button>
       <button class="nav-btn" data-tab="governanca">3. Governança e Ética</button>
@@ -283,14 +285,6 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 
       <div class="cover-eyebrow">Documento de Metodologia</div>
       <h1>Avaliação de Acesso e Qualidade da Atenção Primária à Saúde em Recife</h1>
-      <p style="font-size:.95rem;color:var(--text-3);margin-top:.35rem">Comparação entre Unidades de Saúde da Família (USF) e USF+ por meio de inquérito via WhatsApp</p>
-
-      <div class="cover-meta">
-        <div class="meta-cell"><div class="meta-k">Programa</div><div class="meta-v">Mais Dados Mais Saúde</div></div>
-        <div class="meta-cell"><div class="meta-k">Município</div><div class="meta-v">Recife — PE</div></div>
-        <div class="meta-cell"><div class="meta-k">Desenho</div><div class="meta-v">Transversal probabilístico</div></div>
-        <div class="meta-cell"><div class="meta-k">Versão</div><div class="meta-v">v2 · 2025</div></div>
-      </div>
 
       <div class="abstract">
         <div class="abstract-label">Por que este estudo importa</div>
@@ -310,32 +304,9 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 
       <hr>
 
-      <p class="sec-label">Números do projeto</p>
-      <div class="figures">
-        <div class="fig"><div class="fig-val">8</div><div class="fig-lbl">Distritos Sanitários</div><div class="fig-sub">Cobertura municipal completa</div></div>
-        <div class="fig"><div class="fig-val">16</div><div class="fig-lbl">Estratos amostrais</div><div class="fig-sub">DS × tipo de unidade</div></div>
-        <div class="fig"><div class="fig-val">2.400</div><div class="fig-lbl">Convites no piloto</div><div class="fig-sub">DS 1, 2 e 3</div></div>
-        <div class="fig"><div class="fig-val">7–10%</div><div class="fig-lbl">Taxa de resposta esperada</div><div class="fig-sub">Estimativa via WhatsApp</div></div>
-        <div class="fig"><div class="fig-val">576–768</div><div class="fig-lbl">Respostas necessárias</div><div class="fig-sub">Por grupo (USF ou USF+)</div></div>
-        <div class="fig"><div class="fig-val">A/B</div><div class="fig-lbl">Teste de versões</div><div class="fig-sub">Completa vs reduzida</div></div>
-      </div>
-
-      <hr>
-
-      <p class="sec-label">Consórcio do projeto</p>
-      <div class="partner-list">
-        <div class="partner-row"><span class="pr-name">Umane</span><span class="pr-role">Coordenação executiva e entrega de relatórios</span></div>
-        <div class="partner-row"><span class="pr-name">Vital Strategies</span><span class="pr-role">Parceria técnica principal, metodologia e análise de dados</span></div>
-        <div class="partner-row"><span class="pr-name">UFPel</span><span class="pr-role">Suporte ao plano amostral e análise estatística</span></div>
-        <div class="partner-row"><span class="pr-name">Instituto Devive</span><span class="pr-role">Apoio institucional</span></div>
-        <div class="partner-row"><span class="pr-name">Resolve to Save Lives</span><span class="pr-role">Apoio institucional</span></div>
-        <div class="partner-row"><span class="pr-name">SMS Recife</span><span class="pr-role">Fornecimento da base e-SUS APS e parceria local</span></div>
-      </div>
-
-      <hr>
-
       <p class="sec-label">Seções deste documento</p>
       <div class="sec-nav">
+        <button class="sec-btn" data-goto="recife"><div class="sec-btn-n">—</div><div class="sec-btn-t">Experiência em Recife</div><div class="sec-btn-d">Números do projeto e consórcio envolvido</div></button>
         <button class="sec-btn" data-goto="contexto"><div class="sec-btn-n">01</div><div class="sec-btn-t">Contexto e Objetivos</div><div class="sec-btn-d">Escopo, parceiros, perguntas de pesquisa e etapas</div></button>
         <button class="sec-btn" data-goto="tecnico"><div class="sec-btn-n">02</div><div class="sec-btn-t">Aspectos Técnicos</div><div class="sec-btn-d">Arquitetura, questionário, plano amostral e análise</div></button>
         <button class="sec-btn" data-goto="governanca"><div class="sec-btn-n">03</div><div class="sec-btn-t">Governança e Ética</div><div class="sec-btn-d">CEP, LGPD, TCLE e protocolo para casos sensíveis</div></button>
@@ -344,6 +315,36 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
         <button class="sec-btn" data-goto="aprendizados"><div class="sec-btn-n">06</div><div class="sec-btn-t">Desafios e Aprendizados</div><div class="sec-btn-d">O que funcionou, desafios e recomendações</div></button>
       </div>
 
+    </div>
+    </div>
+
+    <!-- ══ EXPERIÊNCIA EM RECIFE ══ -->
+    <div id="tab-recife" class="tab-content">
+    <div class="page">
+      <div class="cover-eyebrow">Estudo de caso</div>
+      <h1>Experiência em Recife</h1>
+      <p>A aplicação do inquérito em Recife constitui a primeira experiência do MDMS com coleta via WhatsApp em larga escala no contexto da APS municipal. Os números abaixo descrevem o escopo da operação no piloto e as metas da coleta principal.</p>
+
+      <h2>Números do projeto</h2>
+      <div class="figures">
+        <div class="fig"><div class="fig-val">8</div><div class="fig-lbl">Distritos Sanitários</div><div class="fig-sub">Cobertura municipal completa na coleta principal</div></div>
+        <div class="fig"><div class="fig-val">16</div><div class="fig-lbl">Estratos amostrais</div><div class="fig-sub">DS × tipo de unidade (USF ou USF+)</div></div>
+        <div class="fig"><div class="fig-val">2.400</div><div class="fig-lbl">Convites no piloto</div><div class="fig-sub">Distribuídos nos DS 1, 2 e 3</div></div>
+        <div class="fig"><div class="fig-val">7–10%</div><div class="fig-lbl">Taxa de resposta esperada</div><div class="fig-sub">Estimativa para WhatsApp no município</div></div>
+        <div class="fig"><div class="fig-val">576–768</div><div class="fig-lbl">Respostas necessárias</div><div class="fig-sub">Por grupo (USF ou USF+) na coleta principal</div></div>
+        <div class="fig"><div class="fig-val">A/B</div><div class="fig-lbl">Teste de versões</div><div class="fig-sub">Questionário completo vs reduzido</div></div>
+      </div>
+
+      <h2>Consórcio do projeto</h2>
+      <p>O inquérito é conduzido por um consórcio de organizações com papéis complementares, reunindo capacidade técnica em metodologia de pesquisa, análise de dados e gestão em saúde pública.</p>
+      <div class="partner-list">
+        <div class="partner-row"><span class="pr-name">Umane</span><span class="pr-role">Coordenação executiva e entrega de relatórios</span></div>
+        <div class="partner-row"><span class="pr-name">Vital Strategies</span><span class="pr-role">Parceria técnica principal, metodologia e análise de dados</span></div>
+        <div class="partner-row"><span class="pr-name">UFPel</span><span class="pr-role">Suporte ao plano amostral e análise estatística</span></div>
+        <div class="partner-row"><span class="pr-name">Instituto Devive</span><span class="pr-role">Apoio institucional</span></div>
+        <div class="partner-row"><span class="pr-name">Resolve to Save Lives</span><span class="pr-role">Apoio institucional</span></div>
+        <div class="partner-row"><span class="pr-name">SMS Recife</span><span class="pr-role">Fornecimento da base e-SUS APS e parceria local</span></div>
+      </div>
     </div>
     </div>
 
