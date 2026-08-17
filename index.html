@@ -341,10 +341,10 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="amostral">Plano Amostral</button>
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="operacao">Operação e Campo</button>
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="metricas">Métricas</button>
-      <button class="nav-btn" data-tab="tecnico">1. Aspectos Técnicos</button>
-      <button class="nav-btn" data-tab="governanca">2. Governança e Ética</button>
-      <button class="nav-btn" data-tab="arquivos">3. Arquivos de Referência</button>
-      <button class="nav-btn" data-tab="aprendizados">4. Desafios e Aprendizados</button>
+      <button class="nav-btn" data-tab="tecnico">Aspectos Técnicos</button>
+      <button class="nav-btn" data-tab="governanca">Governança e Ética</button>
+      <button class="nav-btn" data-tab="arquivos">Arquivos de Referência</button>
+      <button class="nav-btn" data-tab="aprendizados">Desafios e Aprendizados</button>
     </div>
   </nav>
 
@@ -940,56 +940,61 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">planejamento_amostral_dados_aps.R</div><div class="file-desc">Script principal — leitura da base e-SUS APS, perfil da população, estimativas iniciais</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/planejamento_amostral_dados_aps.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">planejamento_amostral_dados_aps_TIPO_UNIDADE_E_DISTRITO.R</div><div class="file-desc">Planejamento estratificado por tipo de unidade (USF/USF+) e Distrito Sanitário</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/planejamento_amostral_dados_aps_TIPO_UNIDADE_E_DISTRITO.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">planejamento_amostral_dados_aps_USF.R</div><div class="file-desc">Planejamento focado nas USF — alocação proporcional e sorteio PPT</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/planejamento_amostral_dados_aps_USF.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">piloto_analile_pre_coleta.R</div><div class="file-desc">Verificação da lista de disparo antes do envio do piloto</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/piloto_analile_pre_coleta.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">piloto_descritiva.R</div><div class="file-desc">Análise descritiva da lista do piloto — perfil por estrato, versão A/B e variáveis demográficas</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/piloto_descritiva.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">piloto_grafico_lista.R</div><div class="file-desc">Gráficos e visualizações da composição da lista do piloto</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/piloto_grafico_lista.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
-          <div><div class="file-name">ponderacao_analise_mdms_recife_EXemplo.R</div><div class="file-desc">Exemplo comentado de ponderação amostral e análise com pacote <code>survey</code></div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <div><div class="file-name">ponderacao_analise_mdms_recofe_EXemplo.R</div><div class="file-desc">Exemplo comentado de ponderação amostral e análise com pacote <code>survey</code></div></div>
+          <a class="file-dl" href="arquivos/scripts/ponderacao_analise_mdms_recofe_EXemplo.R" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">R</div>
           <div><div class="file-name">dados_censo_2022_RECIFE.R</div><div class="file-desc">Extração do Censo 2022 via SIDRA/IBGE para Recife — referência para pós-estratificação</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/dados_censo_2022_RECIFE.R" download>Baixar</a>
         </div>
       </div>
 
-      <h2>Dados</h2>
+      <h2>Dados e apresentações</h2>
       <div class="file-list">
         <div class="file-item">
-          <div class="file-ext">CSV</div>
-          <div><div class="file-name">07_lista_reserva.csv</div><div class="file-desc">Lista de reserva de participantes (~50% da lista principal) — mesmas proporções demográficas, IDs do piloto excluídos · 3,9 MB</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <div class="file-ext">PPTX</div>
+          <div><div class="file-name">Plano_Amostral_APS_Recife.pptx</div><div class="file-desc">Apresentação do plano amostral — slides de referência para parceiros</div></div>
+          <a class="file-dl" href="arquivos/Plano_Amostral_APS_Recife.pptx" download>Baixar</a>
         </div>
         <div class="file-item">
           <div class="file-ext">XLSX</div>
           <div><div class="file-name">dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx</div><div class="file-desc">Dicionário do Censo 2022 por setor censitário — referência geográfica e socioeconômica</div></div>
-          <button class="file-dl" onclick="alert('Para acesso ao arquivo, solicite à equipe do projeto.')">Solicitar</button>
+          <a class="file-dl" href="arquivos/scripts/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx" download>Baixar</a>
+        </div>
+        <div class="file-item">
+          <div class="file-ext">CSV</div>
+          <div><div class="file-name">07_lista_reserva.csv</div><div class="file-desc">Lista de reserva de participantes (~50% da lista principal) — contém dados pessoais, disponível mediante solicitação</div></div>
+          <button class="file-dl" onclick="alert('Este arquivo contém dados pessoais e é disponibilizado mediante solicitação formal à equipe do projeto.')">Solicitar</button>
         </div>
       </div>
     </div>
