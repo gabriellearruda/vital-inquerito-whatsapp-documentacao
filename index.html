@@ -430,142 +430,165 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 
       <!-- Sub: Perguntas -->
       <div class="sub-panel" id="sub-perguntas">
-        <h2 style="margin-top:0">Instrumento: PCATool-Brasil adaptado</h2>
-        <p>O instrumento é baseado no <strong>PCATool-Brasil</strong> (Primary Care Assessment Tool), instrumento validado para medir atributos essenciais e derivados da Atenção Primária à Saúde na perspectiva do usuário. A versão utilizada neste estudo foi adaptada para o formato conversacional do WhatsApp e para o contexto específico do município de Recife.</p>
-
-        <h3>Teste A/B de versões</h3>
-        <p>No piloto, cada participante foi atribuído aleatoriamente a uma das duas versões do questionário, balanceadas por estrato, sexo e tempo desde o último atendimento. O objetivo do teste é verificar o impacto do tamanho do instrumento sobre a taxa de resposta, definindo a versão a ser adotada na coleta principal.</p>
+        <h2 style="margin-top:0">Instrumento: Questionários de Acesso e Qualidade da APS</h2>
+        <p>O instrumento foi desenvolvido com base nos atributos do <strong>PCATool-Brasil</strong> e adaptado para o formato conversacional do WhatsApp. São duas versões testadas em paralelo (A/B) para comparar taxas de conclusão e qualidade das respostas. Todas as perguntas usam escolha única com botões de resposta.</p>
 
         <div class="ab">
           <div class="ab-col">
-            <div class="ab-label">Versão A — Completa</div>
+            <div class="ab-label">Versão Expandida (A) — ~8 min</div>
             <ul>
-              <li>Duração estimada: 10–15 minutos</li>
-              <li>Todos os atributos do PCATool-Brasil</li>
-              <li>Maior riqueza analítica</li>
+              <li>17 a 19 perguntas</li>
+              <li>7 atributos do PCATool-Brasil</li>
+              <li>Maior profundidade analítica</li>
               <li>Maior risco de abandono</li>
             </ul>
           </div>
           <div class="ab-col">
-            <div class="ab-label">Versão B — Reduzida</div>
+            <div class="ab-label">Versão Curta (B) — ~3 min</div>
             <ul>
-              <li>Duração estimada: 5–8 minutos</li>
-              <li>Atributos prioritários selecionados</li>
+              <li>9 a 11 perguntas</li>
+              <li>5 atributos prioritários</li>
               <li>Esperada maior taxa de conclusão</li>
               <li>Menor profundidade analítica</li>
             </ul>
           </div>
         </div>
-        <p class="note">Critério de adoção da versão B na coleta principal: taxa de conclusão ≥50% superior à da versão A, sem perda relevante de qualidade das respostas.</p>
+        <p class="note">Critério de adoção da versão curta na coleta principal: taxa de conclusão ≥50% superior à da versão expandida, sem perda relevante de qualidade.</p>
 
         <hr>
 
-        <h3>Estrutura do instrumento</h3>
-        <p>O questionário está organizado em blocos temáticos correspondentes aos atributos do PCATool-Brasil. As perguntas utilizam escala de Likert de 4 pontos (1 = com certeza não / 4 = com certeza sim) ou escala de frequência (1 = nunca / 4 = sempre), com opção "Não sei / Não se aplica".</p>
-
-        <!-- Versão A -->
-        <h3>Versão A — Blocos e atributos</h3>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 0 — Perfil e elegibilidade</div>
-          <div class="q-item"><span class="q-num">0.1</span><div><span class="q-text">Você está cadastrado(a) em uma Unidade de Saúde da Família em Recife?</span><div class="q-scale">Sim / Não</div></div></div>
-          <div class="q-item"><span class="q-num">0.2</span><div><span class="q-text">Qual o nome da sua Unidade de Saúde da Família?</span><div class="q-scale">Resposta aberta</div></div></div>
-          <div class="q-item"><span class="q-num">0.3</span><div><span class="q-text">Nos últimos 12 meses, você utilizou algum serviço nessa unidade?</span><div class="q-scale">Sim / Não</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 1 — Acesso de primeiro contato: utilização</div>
-          <div class="q-item"><span class="q-num">1.1</span><div><span class="q-text">Quando você precisa de uma consulta médica de rotina (não emergência), você vai primeiro à sua USF?</span><div class="q-scale">1 – Com certeza não · 2 – Provavelmente não · 3 – Provavelmente sim · 4 – Com certeza sim</div></div></div>
-          <div class="q-item"><span class="q-num">1.2</span><div><span class="q-text">Quando você tem um novo problema de saúde, você procura sua USF antes de qualquer outro serviço?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">1.3</span><div><span class="q-text">Quando você precisa de orientação sobre sua saúde, sua USF é o primeiro lugar que você procura?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 2 — Acesso de primeiro contato: acessibilidade</div>
-          <div class="q-item"><span class="q-num">2.1</span><div><span class="q-text">Quando sua USF está fechada (fins de semana ou feriados), você tem informação sobre onde procurar atendimento?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">2.2</span><div><span class="q-text">É fácil conseguir uma consulta no mesmo dia quando você tem um problema de saúde urgente?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">2.3</span><div><span class="q-text">Você consegue contato com a sua USF por telefone ou mensagem quando precisa?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 3 — Longitudinalidade (vínculo)</div>
-          <div class="q-item"><span class="q-num">3.1</span><div><span class="q-text">Você tem um médico ou enfermeiro de referência na sua USF — alguém que você conhece pelo nome?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">3.2</span><div><span class="q-text">Esse profissional conhece o seu histórico de saúde, sem que você precise contar tudo novamente a cada consulta?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">3.3</span><div><span class="q-text">Você se sente à vontade para conversar sobre sua saúde — incluindo assuntos pessoais — com esse profissional?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">3.4</span><div><span class="q-text">Esse profissional conhece os medicamentos que você usa regularmente?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 4 — Coordenação: integração de cuidados</div>
-          <div class="q-item"><span class="q-num">4.1</span><div><span class="q-text">Quando você foi encaminhado(a) a um especialista, sua USF explicou o motivo do encaminhamento?</span><div class="q-scale">1–4 / Não se aplica</div></div></div>
-          <div class="q-item"><span class="q-num">4.2</span><div><span class="q-text">Após uma consulta com especialista, sua USF soube o que foi tratado e deu seguimento ao seu cuidado?</span><div class="q-scale">1–4 / Não se aplica</div></div></div>
-          <div class="q-item"><span class="q-num">4.3</span><div><span class="q-text">Quando você foi internado(a), sua USF acompanhou sua situação?</span><div class="q-scale">1–4 / Não se aplica</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 5 — Integralidade: serviços prestados</div>
-          <div class="q-item"><span class="q-num">5.1</span><div><span class="q-text">Na sua USF, eles perguntam sobre hábitos como alimentação, atividade física e uso de cigarro ou álcool?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">5.2</span><div><span class="q-text">Você recebeu orientações sobre como manter ou melhorar sua saúde — e não só tratamento quando ficou doente?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">5.3</span><div><span class="q-text">Na sua USF, fazem verificação de pressão arterial, glicemia e outros exames de rotina preventiva?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">5.4</span><div><span class="q-text">Você recebeu orientação sobre saúde mental — como lidar com estresse, ansiedade ou depressão?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 6 — Integralidade: serviços disponíveis</div>
-          <div class="q-item"><span class="q-num">6.1</span><div><span class="q-text">Sua USF oferece serviço de odontologia?</span><div class="q-scale">Sim / Não / Não sei</div></div></div>
-          <div class="q-item"><span class="q-num">6.2</span><div><span class="q-text">Sua USF oferece serviço de saúde mental (psicologia ou psiquiatria)?</span><div class="q-scale">Sim / Não / Não sei</div></div></div>
-          <div class="q-item"><span class="q-num">6.3</span><div><span class="q-text">Sua USF oferece serviço de nutrição?</span><div class="q-scale">Sim / Não / Não sei</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 7 — Orientação familiar</div>
-          <div class="q-item"><span class="q-num">7.1</span><div><span class="q-text">Os profissionais da sua USF conhecem outros membros da sua família que também são atendidos lá?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">7.2</span><div><span class="q-text">Eles já conversaram com você sobre como a saúde de um membro da família pode afetar os outros?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 8 — Orientação comunitária</div>
-          <div class="q-item"><span class="q-num">8.1</span><div><span class="q-text">Sua USF realiza ações de saúde fora da unidade — visitas domiciliares, campanhas ou ações na comunidade?</span><div class="q-scale">1–4</div></div></div>
-          <div class="q-item"><span class="q-num">8.2</span><div><span class="q-text">Você já foi convidado(a) a participar de alguma atividade de saúde promovida pela sua USF na comunidade?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 9 — Acesso digital e teleatendimento</div>
-          <div class="q-item"><span class="q-num">9.1</span><div><span class="q-text">Sua USF oferece ou ofereceu algum tipo de atendimento por telefone ou videoconferência?</span><div class="q-scale">Sim / Não / Não sei</div></div></div>
-          <div class="q-item"><span class="q-num">9.2</span><div><span class="q-text">Você já foi orientado(a) a consultar informações de saúde em aplicativos ou plataformas digitais pela sua USF?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <div class="q-section">
-          <div class="q-section-title">Bloco 10 — Avaliação geral</div>
-          <div class="q-item"><span class="q-num">10.1</span><div><span class="q-text">De forma geral, como você avalia o atendimento da sua USF?</span><div class="q-scale">1 – Muito ruim · 2 – Ruim · 3 – Bom · 4 – Muito bom</div></div></div>
-          <div class="q-item"><span class="q-num">10.2</span><div><span class="q-text">Você indicaria sua USF a um familiar ou amigo?</span><div class="q-scale">1–4</div></div></div>
-        </div>
-
-        <hr>
-
-        <!-- Versão B -->
-        <h3>Versão B — Blocos incluídos (reduzida)</h3>
-        <p>A versão B mantém os blocos de maior prioridade analítica para a comparação USF vs USF+, reduzindo o tempo de preenchimento para 5–8 minutos. Os blocos de orientação familiar, serviços disponíveis e coordenação com especialistas são removidos ou condensados.</p>
-
+        <!-- Mapa de cobertura -->
+        <h3>Cobertura por atributo</h3>
         <div class="tw">
           <table>
-            <thead><tr><th>Bloco</th><th>Atributo</th><th>Versão A</th><th>Versão B</th></tr></thead>
+            <thead><tr><th>Bloco / Atributo</th><th>Perguntas — Expandida (A)</th><th>Perguntas — Curta (B)</th></tr></thead>
             <tbody>
-              <tr><td>0 — Perfil</td><td>Elegibilidade e cadastro</td><td>✓</td><td>✓</td></tr>
-              <tr><td>1 — Acesso (utilização)</td><td>Primeiro contato</td><td>✓</td><td>✓</td></tr>
-              <tr><td>2 — Acesso (acessibilidade)</td><td>Facilidade de acesso</td><td>✓</td><td>✓ <small>(condensado)</small></td></tr>
-              <tr><td>3 — Longitudinalidade</td><td>Vínculo com profissional</td><td>✓</td><td>✓</td></tr>
-              <tr><td>4 — Coordenação</td><td>Integração de cuidados</td><td>✓</td><td>—</td></tr>
-              <tr><td>5 — Integralidade (prestados)</td><td>Prevenção e promoção</td><td>✓</td><td>✓ <small>(condensado)</small></td></tr>
-              <tr><td>6 — Integralidade (disponíveis)</td><td>Oferta de serviços</td><td>✓</td><td>—</td></tr>
-              <tr><td>7 — Orientação familiar</td><td>Família</td><td>✓</td><td>—</td></tr>
-              <tr><td>8 — Orientação comunitária</td><td>Comunidade</td><td>✓</td><td>—</td></tr>
-              <tr><td>9 — Acesso digital</td><td>Teleatendimento</td><td>✓</td><td>✓</td></tr>
-              <tr><td>10 — Avaliação geral</td><td>Nota e recomendação</td><td>✓</td><td>✓</td></tr>
+              <tr><td><strong>Consentimento</strong></td><td>P1</td><td>P1</td></tr>
+              <tr><td><strong>Triagem</strong></td><td>P2, P2.1</td><td>P2, P2.1</td></tr>
+              <tr><td><strong>Acesso / Primeiro Contato</strong></td><td>P3, P3.1, P4</td><td>P3, P3.1</td></tr>
+              <tr><td><strong>Acessibilidade Organizacional</strong></td><td>P5, P6, P7</td><td>P4, P5</td></tr>
+              <tr><td><strong>Longitudinalidade (Vínculo)</strong></td><td>P8, P9</td><td>P6</td></tr>
+              <tr><td><strong>Coordenação do Cuidado</strong></td><td>P10, P11</td><td>—</td></tr>
+              <tr><td><strong>Integralidade</strong></td><td>P12</td><td>P7</td></tr>
+              <tr><td><strong>Orientação Familiar</strong></td><td>P13</td><td>—</td></tr>
+              <tr><td><strong>Orientação Comunitária</strong></td><td>P14</td><td>—</td></tr>
+              <tr><td><strong>Acesso Digital</strong></td><td>P15, P16</td><td>P8</td></tr>
+              <tr><td><strong>Satisfação Geral (NPS)</strong></td><td>P17</td><td>P9</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="note">Perguntas específicas de cada bloco e escala de resposta completa disponíveis no documento <em>Especificacao_Questionarios_APS_Recife_v2.pdf</em>, na seção Arquivos de Referência.</p>
+
+        <hr>
+
+        <!-- Versão Expandida -->
+        <h3>Versão Expandida (A) — Fluxo completo de perguntas</h3>
+
+        <div class="q-section">
+          <div class="q-section-title">Consentimento</div>
+          <div class="q-item"><span class="q-num">P1</span><div><span class="q-text">Você aceita participar dessa pesquisa?</span><div class="q-scale">Sim → P2 &nbsp;·&nbsp; Não → encerramento</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Triagem Inicial</div>
+          <div class="q-item"><span class="q-num">P2</span><div><span class="q-text">Você frequenta a <em>[nome da unidade de saúde]</em>?</span><div class="q-scale">Sim → P3 &nbsp;·&nbsp; Não → P2.1</div></div></div>
+          <div class="q-item"><span class="q-num">P2.1</span><div><span class="q-text">Qual unidade de saúde você frequenta? <em>(exibida apenas se P2 = Não)</em></span><div class="q-scale">Outra UBS → P3 &nbsp;·&nbsp; Serviço privado/convênio → encerramento</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Acesso / Primeiro Contato</div>
+          <div class="q-item"><span class="q-num">P3</span><div><span class="q-text">Quando você precisa de atendimento para questões de saúde como gripe, pressão alta, diabetes, etc., a sua unidade/posto de saúde é o primeiro lugar que você procura?</span><div class="q-scale">Sim → P4 &nbsp;·&nbsp; Às vezes ou Não → P3.1</div></div></div>
+          <div class="q-item"><span class="q-num">P3.1</span><div><span class="q-text">Que local você procura quando precisa de atendimento para questões de saúde como gripe, pressão alta, diabetes, etc.? <em>(exibida se P3 ≠ Sim)</em></span><div class="q-scale">UPA · Hospital público · Policlínica · Médico particular · Clínica particular · Outro → P4</div></div></div>
+          <div class="q-item"><span class="q-num">P4</span><div><span class="q-text">Quando precisa de consulta (médico, dentista ou enfermeiro) na sua unidade/posto de saúde, geralmente consegue no mesmo dia ou em poucos dias (até 15 dias)?</span><div class="q-scale">Sim · Às vezes · Não → P5</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Acessibilidade Organizacional</div>
+          <div class="q-item"><span class="q-num">P5</span><div><span class="q-text">Quando você procura atendimento na sua unidade/posto de saúde, passa pelo acolhimento?</span><div class="q-scale">Sim · Às vezes · Não → P6 &nbsp;·&nbsp; <em>Acolhimento: escuta e triagem por profissional de saúde na chegada à unidade</em></div></div></div>
+          <div class="q-item"><span class="q-num">P6</span><div><span class="q-text">O horário de funcionamento da sua unidade/posto de saúde permite que você consiga atendimento quando precisa?</span><div class="q-scale">Sim · Às vezes · Não → P7</div></div></div>
+          <div class="q-item"><span class="q-num">P7</span><div><span class="q-text">É fácil marcar consulta ou atendimento na sua unidade/posto de saúde?</span><div class="q-scale">Sim · Às vezes · Não → P8</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Longitudinalidade (Vínculo)</div>
+          <div class="q-item"><span class="q-num">P8</span><div><span class="q-text">Existe um profissional ou equipe da sua unidade/posto de saúde que conhece você e acompanha sua saúde ao longo do tempo?</span><div class="q-scale">Sim, conhece e me acompanha · Sim, conhece, mas não me acompanha · Não → P9</div></div></div>
+          <div class="q-item"><span class="q-num">P9</span><div><span class="q-text">Quando você é atendido na sua unidade/posto de saúde, os profissionais da equipe de saúde conhecem seu histórico de saúde e problemas anteriores?</span><div class="q-scale">Sim · Às vezes · Não → P10</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Coordenação do Cuidado</div>
+          <div class="q-item"><span class="q-num">P10</span><div><span class="q-text">Quando você precisa de consulta com especialista ou realizar exames, a equipe da sua unidade/posto de saúde orienta você sobre como realizar esses agendamentos?</span><div class="q-scale">Sim · Às vezes · Não → P11</div></div></div>
+          <div class="q-item"><span class="q-num">P11</span><div><span class="q-text">Depois que você passa por outro serviço de saúde (ex.: consulta com especialista; exames; internação; etc.), a equipe da sua unidade/posto de saúde pergunta ou conversa com você sobre os resultados ou sobre a continuidade do tratamento?</span><div class="q-scale">Sim · Às vezes · Não → P12</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Integralidade</div>
+          <div class="q-item"><span class="q-num">P12</span><div><span class="q-text">Na sua unidade/posto de saúde você recebe orientações sobre prevenção de doenças e hábitos saudáveis (vacinas, alimentação saudável, atividade física, consumo de álcool, tabagismo, etc.)?</span><div class="q-scale">Sim · Às vezes · Não → P13</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Orientação Familiar</div>
+          <div class="q-item"><span class="q-num">P13</span><div><span class="q-text">Os profissionais da sua unidade/posto de saúde costumam perguntar sobre a saúde de outras pessoas da sua família ou sobre condições familiares que podem influenciar sua saúde?</span><div class="q-scale">Sim · Às vezes · Não → P14</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Orientação Comunitária</div>
+          <div class="q-item"><span class="q-num">P14</span><div><span class="q-text">A equipe de saúde parece conhecer os principais problemas que afetam a saúde da comunidade onde você mora e desenvolve ações para melhorar esses problemas? (ex.: sobre descarte inadequado de lixo, a unidade trabalha orientações sobre a importância do descarte adequado)</span><div class="q-scale">Sim · Às vezes · Não → P15</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Acesso Digital e Contato à Distância</div>
+          <div class="q-item"><span class="q-num">P15</span><div><span class="q-text">Você consegue entrar em contato com a sua unidade/posto de saúde por telefone, aplicativo ou internet quando precisa? (ex.: para tirar dúvidas; obter informações; marcar consultas; etc.)</span><div class="q-scale">Sim · Às vezes · Não → P16</div></div></div>
+          <div class="q-item"><span class="q-num">P16</span><div><span class="q-text">A sua unidade/posto de saúde envia informações ou orientações por WhatsApp, mensagem ou outro meio digital?</span><div class="q-scale">Sim · Às vezes · Não → P17</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Satisfação Geral (NPS)</div>
+          <div class="q-item"><span class="q-num">P17</span><div><span class="q-text">De 0 a 10, quanto você recomendaria sua unidade de saúde a um amigo ou familiar?</span><div class="q-scale">Escala numérica de 0 a 10 → agradecimento</div></div></div>
+        </div>
+
+        <hr>
+
+        <!-- Versão Curta -->
+        <h3>Versão Curta (B) — Fluxo completo de perguntas</h3>
+        <p>As perguntas de consentimento (P1), triagem (P2, P2.1) e primeiro contato (P3, P3.1) são idênticas às da versão expandida. As demais perguntas são as seguintes:</p>
+
+        <div class="q-section">
+          <div class="q-section-title">Acessibilidade Organizacional</div>
+          <div class="q-item"><span class="q-num">P4</span><div><span class="q-text">O horário de funcionamento da sua unidade/posto de saúde permite que você consiga atendimento quando precisa?</span><div class="q-scale">Sim · Às vezes · Não → P5</div></div></div>
+          <div class="q-item"><span class="q-num">P5</span><div><span class="q-text">É fácil marcar consulta ou atendimento na sua unidade/posto de saúde?</span><div class="q-scale">Sim · Às vezes · Não → P6</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Longitudinalidade (Vínculo)</div>
+          <div class="q-item"><span class="q-num">P6</span><div><span class="q-text">Quando você é atendido na sua unidade/posto de saúde, os profissionais da equipe de saúde conhecem seu histórico de saúde e problemas anteriores?</span><div class="q-scale">Sim · Às vezes · Não → P7</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Integralidade</div>
+          <div class="q-item"><span class="q-num">P7</span><div><span class="q-text">Na sua unidade/posto de saúde você recebe orientações sobre prevenção de doenças e hábitos saudáveis (vacinas, alimentação saudável, atividade física, consumo de álcool, tabagismo, etc.)?</span><div class="q-scale">Sim · Às vezes · Não → P8</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Acesso Digital</div>
+          <div class="q-item"><span class="q-num">P8</span><div><span class="q-text">Você consegue entrar em contato com a sua unidade/posto de saúde por telefone, aplicativo ou internet quando precisa? (ex.: para tirar dúvidas; obter informações; marcar consultas; etc.)</span><div class="q-scale">Sim · Às vezes · Não → P9</div></div></div>
+        </div>
+
+        <div class="q-section">
+          <div class="q-section-title">Satisfação Geral (NPS)</div>
+          <div class="q-item"><span class="q-num">P9</span><div><span class="q-text">De 0 a 10, quanto você recomendaria sua unidade de saúde a um amigo ou familiar?</span><div class="q-scale">Escala numérica de 0 a 10 → agradecimento</div></div></div>
+        </div>
+
+        <hr>
+
+        <h3>Mensagem de abertura</h3>
+        <div class="abstract">
+          <div class="abstract-label">Versão curta — template de convite</div>
+          <p>Olá, <em>[nome da pessoa]</em>!<br>A Prefeitura de Recife está realizando uma pesquisa para avaliar a qualidade do atendimento nos postos de saúde da nossa cidade.<br>São até 11 perguntas para responder pelo WhatsApp, e você contribui com os serviços dos postos de saúde. O preenchimento do questionário leva, em média, 3 minutos. As respostas são anônimas.</p>
+        </div>
+        <div class="abstract">
+          <div class="abstract-label">Versão expandida — template de convite</div>
+          <p>Olá, <em>[nome da pessoa]</em>!<br>A Prefeitura de Recife está realizando uma pesquisa para avaliar a qualidade do atendimento nos postos de saúde da nossa cidade.<br>São até 19 perguntas para responder pelo WhatsApp, e você contribui com os serviços dos postos de saúde. O preenchimento do questionário leva, em média, 8 minutos. As respostas são anônimas.</p>
+        </div>
       </div>
 
       <!-- Sub: Plano Amostral -->
@@ -652,25 +675,19 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
       <p class="sec-label">Seção 1</p>
       <h1>Aspectos Técnicos</h1>
 
-      <h2>Arquitetura da solução</h2>
-      <div class="flow">
-        <div class="flow-step"><div class="flow-idx">1.</div><div class="flow-box"><strong>e-SUS APS — Base cadastral</strong><span>Usuários ≥18 anos com WhatsApp registrado, classificados por USF/USF+ e Distrito Sanitário</span></div></div>
-        <div class="flow-step"><div class="flow-idx">2.</div><div class="flow-box"><strong>Scripts R — Plano amostral</strong><span>Estratificação (DS × tipo de unidade), sorteio com probabilidade proporcional ao tamanho (PPT), alocação demográfica, geração da lista de disparo e lista de reserva</span></div></div>
-        <div class="flow-step"><div class="flow-idx">3.</div><div class="flow-box"><strong>Plataforma de disparo via WhatsApp</strong><span>Envio em lote de convites personalizados — terça a quinta, 9–11h. Lembrete no dia 8 (piloto)</span></div></div>
-        <div class="flow-step"><div class="flow-idx">4.</div><div class="flow-box"><strong>Questionário conversacional</strong><span>Fluxo guiado via WhatsApp — versão A (10–15 min) ou versão B (5–8 min), atribuída aleatoriamente</span></div></div>
-        <div class="flow-step"><div class="flow-idx">5.</div><div class="flow-box"><strong>Análise ponderada em R</strong><span>Pós-estratificação por sexo, faixa etária e raça/cor; estimativas com erro padrão corrigido pelo design effect</span></div></div>
+      <div class="wip-block">
+        <span class="wip-icon">⚙️</span>
+        <p class="wip-title">Seção em construção</p>
+        <p class="wip-desc">Esta seção será preenchida com detalhes técnicos da arquitetura da solução, pipeline de dados, scripts R e pontos de atenção para replicação.</p>
       </div>
 
-      <h2>Análise em R</h2>
-      <p>A análise utiliza ponderação amostral com pós-estratificação por sexo, faixa etária e raça/cor, calibrando a distribuição da amostra de respondentes à distribuição dos cadastros no e-SUS APS. Os erros padrão são corrigidos pelo design effect estimado no próprio piloto.</p>
-      <p>Pacotes principais: <code>tidyverse</code>, <code>survey</code>, <code>srvyr</code>, <code>gtsummary</code>, <code>sidrar</code>, <code>readxl</code>, <code>janitor</code>.</p>
-
-      <h3>Pontos de atenção</h3>
+      <h2>O que esta seção cobrirá</h2>
       <ul>
-        <li>Proporção de números inválidos na base e-SUS APS — meta: &lt;20% por estrato antes do disparo principal</li>
-        <li>Atribuição A/B com balanceamento por estrato × sexo × tempo desde último atendimento</li>
-        <li>Pós-estratificação por raça/cor dependente da qualidade do campo na base cadastral</li>
-        <li>IDs do piloto excluídos da lista principal e da lista de reserva para evitar duplicidade</li>
+        <li><strong>Arquitetura da solução</strong> — Fluxo completo da base e-SUS APS até a análise final</li>
+        <li><strong>Pipeline R</strong> — Scripts de planejamento amostral, análise descritiva e ponderação</li>
+        <li><strong>Plataforma de disparo</strong> — Configuração do WhatsApp Business e gerenciador de mensagens</li>
+        <li><strong>Métricas de acompanhamento</strong> — Indicadores operacionais e de qualidade por campanha</li>
+        <li><strong>Pontos de atenção</strong> — Completude do cadastro, balanceamento A/B, pós-estratificação</li>
       </ul>
     </div>
     </div>
