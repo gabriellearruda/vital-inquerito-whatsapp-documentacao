@@ -236,6 +236,27 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 /* ── placeholder ── */
 .placeholder{color:var(--text-3);font-style:italic;font-size:.85rem;padding:.5rem 0}
 
+/* ── questionnaire flow diagram ── */
+.qflow{margin:1.5rem 0 2rem;overflow-x:auto}
+.qf-row{display:flex;align-items:flex-start;gap:0;margin-bottom:0}
+.qf-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0}
+.qf-node{
+  border:1px solid var(--rule);padding:.45rem .75rem;font-size:.78rem;
+  text-align:center;width:100%;background:var(--bg);
+  color:var(--text-2);line-height:1.4;
+}
+.qf-node.start{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+.qf-node.end-ok{background:var(--accent);color:#fff;border-color:var(--accent);font-size:.72rem}
+.qf-node.end-no{background:var(--rule);color:var(--text-3);border-color:var(--rule);font-size:.72rem}
+.qf-node.branch{border-style:dashed;font-size:.75rem;color:var(--text-3)}
+.qf-node strong{display:block;font-family:system-ui,sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);margin-bottom:.15rem}
+.qf-node.start strong{color:rgba(255,255,255,.75)}
+.qf-arrow{font-size:.75rem;color:var(--text-3);padding:.15rem 0;text-align:center;user-select:none}
+.qf-branch-row{display:flex;gap:.5rem;width:100%}
+.qf-branch-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0}
+.qf-branch-label{font-family:system-ui,sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:.1rem 0;text-align:center}
+.qf-branch-label.no{color:var(--text-3)}
+
 /* ── em construção ── */
 .wip-block{
   border:1px solid var(--rule);padding:2.5rem 2rem;margin:2rem 0;text-align:center;
@@ -319,6 +340,7 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="perguntas">Instrumento e Perguntas</button>
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="amostral">Plano Amostral</button>
       <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="operacao">Operação e Campo</button>
+      <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="metricas">Métricas</button>
       <button class="nav-btn" data-tab="tecnico">1. Aspectos Técnicos</button>
       <button class="nav-btn" data-tab="governanca">2. Governança e Ética</button>
       <button class="nav-btn" data-tab="arquivos">3. Arquivos de Referência</button>
@@ -480,6 +502,73 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 
         <hr>
 
+        <!-- Diagrama de fluxo -->
+        <h3>Diagrama de fluxo — roteamento</h3>
+        <p>O fluxo abaixo representa o roteamento compartilhado pelas duas versões. As ramificações condicionais estão em destaque; a partir de P4 (versão expandida) ou P4 (versão curta), o fluxo é linear até o NPS.</p>
+
+        <div class="qflow">
+          <!-- P1 -->
+          <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:.25rem">
+            <div class="qf-node start" style="max-width:340px;width:100%"><strong>P1 — Consentimento</strong>Você aceita participar dessa pesquisa?</div>
+          </div>
+          <!-- Branch P1 -->
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .1rem">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↙</div><div class="qf-branch-label">Sim</div></div>
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↘</div><div class="qf-branch-label no">Não</div></div>
+          </div>
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .5rem">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↓</div></div>
+            <div style="flex:1;text-align:center"><div class="qf-node end-no">✗ Encerrar</div></div>
+          </div>
+
+          <!-- P2 -->
+          <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:.25rem">
+            <div class="qf-node" style="max-width:340px;width:100%"><strong>P2 — Triagem</strong>Você frequenta a <em>[unidade]</em>?</div>
+          </div>
+          <!-- Branch P2 -->
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .1rem">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↙</div><div class="qf-branch-label">Sim</div></div>
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↘</div><div class="qf-branch-label no">Não</div></div>
+          </div>
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .5rem;align-items:flex-end">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↓</div></div>
+            <div style="flex:1">
+              <div class="qf-node branch" style="margin-bottom:.25rem"><strong>P2.1</strong>Qual unidade frequenta?</div>
+              <div style="display:flex;gap:.25rem">
+                <div style="flex:1;text-align:center"><div class="qf-branch-label" style="font-size:.58rem">Outra UBS→ P3</div></div>
+                <div style="flex:1;text-align:center"><div class="qf-node end-no" style="font-size:.68rem">✗ Encerrar<br><span style="font-size:.62rem;font-weight:normal">Privado/convênio</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- P3 -->
+          <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:.25rem">
+            <div class="qf-node" style="max-width:340px;width:100%"><strong>P3 — Primeiro Contato</strong>Sua unidade é o primeiro lugar que procura?</div>
+          </div>
+          <!-- Branch P3 -->
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .1rem">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↙</div><div class="qf-branch-label">Sim</div></div>
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↘</div><div class="qf-branch-label no">Às vezes / Não</div></div>
+          </div>
+          <div style="display:flex;gap:.5rem;max-width:340px;width:100%;margin:0 auto .5rem;align-items:flex-end">
+            <div style="flex:1;text-align:center"><div class="qf-arrow">↓</div></div>
+            <div style="flex:1">
+              <div class="qf-node branch"><strong>P3.1</strong>Que local procura? → P4</div>
+            </div>
+          </div>
+
+          <!-- Linear -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.25rem">
+            <div class="qf-node" style="max-width:340px;width:100%"><strong>P4 – P(n-1)</strong>Perguntas lineares — sem ramificação<br><span style="font-size:.72rem;color:var(--text-3)">Expandida: P4 a P16 &nbsp;·&nbsp; Curta: P4 a P8</span></div>
+            <div class="qf-arrow">↓</div>
+            <div class="qf-node" style="max-width:340px;width:100%"><strong>P17 / P9 — NPS</strong>De 0 a 10, quanto recomendaria?</div>
+            <div class="qf-arrow">↓</div>
+            <div class="qf-node end-ok" style="max-width:340px;width:100%">✓ Agradecimento e encerramento</div>
+          </div>
+        </div>
+
+        <hr>
+
         <!-- Versão Expandida -->
         <h3>Versão Expandida (A) — Fluxo completo de perguntas</h3>
 
@@ -625,6 +714,86 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
         <h3>Análise estatística</h3>
         <p>A análise utiliza ponderação amostral com pós-estratificação por sexo, faixa etária e raça/cor, calibrando a distribuição da amostra de respondentes à distribuição dos cadastros no e-SUS APS. Os erros padrão são corrigidos pelo design effect estimado no próprio piloto.</p>
         <p>Pacotes R: <code>tidyverse</code>, <code>survey</code>, <code>srvyr</code>, <code>gtsummary</code>, <code>sidrar</code>, <code>readxl</code>, <code>janitor</code>.</p>
+      </div>
+
+      <!-- Sub: Métricas -->
+      <div class="sub-panel" id="sub-metricas">
+        <h2 style="margin-top:0">Métricas de acompanhamento</h2>
+        <p>As métricas abaixo são extraídas por campanha de disparo e aplicáveis às duas versões do questionário. As métricas marcadas como <em>calculado</em> são derivadas pela equipe analítica a partir dos dados brutos da plataforma.</p>
+
+        <h3>Como acessar os dados</h3>
+        <p>As métricas de entrega e leitura estão disponíveis diretamente no <strong>Gerenciador do WhatsApp → Modelos de mensagem</strong>. Selecione o modelo da campanha desejada para visualizar os indicadores operacionais.</p>
+
+        <div class="tw">
+          <table>
+            <thead>
+              <tr>
+                <th>Métrica</th>
+                <th>Fonte</th>
+                <th>Como calcular / o que observar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Volume de entrega</strong></td><td>Plataforma / BSP</td><td>Total de mensagens entregues na campanha</td></tr>
+              <tr><td><strong>Nome do modelo de mensagem</strong></td><td>Manualmente</td><td>Registrar o nome do template usado no disparo</td></tr>
+              <tr><td><strong>Taxa de entrega</strong></td><td>Plataforma / BSP</td><td>Entregues ÷ enviadas × 100</td></tr>
+              <tr><td><strong>Taxa de leitura</strong></td><td>Plataforma / BSP</td><td>Lidas ÷ entregues × 100</td></tr>
+              <tr><td><strong>Taxa de respostas</strong></td><td>Calculado</td><td>Respostas ÷ entregues × 100</td></tr>
+              <tr><td><strong>Taxa de abandono</strong></td><td>Calculado</td><td>(Mensagens enviadas − Mensagens respondidas) ÷ Mensagens lidas</td></tr>
+              <tr><td><strong>Clique em botão</strong></td><td>Plataforma / BSP</td><td>Quantidade de cliques por botão / opção de resposta</td></tr>
+              <tr><td><strong>Taxa de conclusão</strong></td><td>Calculado</td><td>Concluíram ÷ iniciaram × 100</td></tr>
+              <tr><td><strong>Falhas de entrega</strong></td><td>Plataforma / BSP</td><td>Quantidade de mensagens não entregues por campanha</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Dados coletados pelo backend — Versão Curta (B)</h3>
+        <p>Para cada envio (completo ou interrompido) da versão curta, o sistema deve registrar:</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Campo</th><th>Descrição</th></tr></thead>
+            <tbody>
+              <tr><td>ID do respondente</td><td>Identificador anônimo do paciente — sem nome ou CPF</td></tr>
+              <tr><td>Unidade de saúde (cadastral)</td><td>Unidade vinculada ao respondente na base da SMS-Recife</td></tr>
+              <tr><td>Unidade de saúde (relatada em P2.1)</td><td>Preenchido apenas quando P2 = Não e P2.1 = Outra UBS</td></tr>
+              <tr><td>Data e hora do envio</td><td>Timestamp do início do preenchimento</td></tr>
+              <tr><td>Data e hora da conclusão</td><td>Timestamp do último envio (P9 ou ponto de saída)</td></tr>
+              <tr><td>Status de conclusão</td><td>Completo · Interrompido · Recusado</td></tr>
+              <tr><td>Resposta P1</td><td>Sim · Não</td></tr>
+              <tr><td>Resposta P2</td><td>Sim · Não</td></tr>
+              <tr><td>Resposta P2.1</td><td>Opção selecionada (quando exibida)</td></tr>
+              <tr><td>Resposta P3</td><td>Sim · Às vezes · Não</td></tr>
+              <tr><td>Resposta P3.1</td><td>Opção selecionada (quando exibida)</td></tr>
+              <tr><td>Respostas P4 a P8</td><td>Sim · Às vezes · Não (uma por pergunta)</td></tr>
+              <tr><td>Resposta P9</td><td>Valor numérico de 0 a 10</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Dados coletados pelo backend — Versão Expandida (A)</h3>
+        <p>Mesmos campos da versão curta, com as seguintes diferenças:</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Campo</th><th>Descrição</th></tr></thead>
+            <tbody>
+              <tr><td>Data e hora da conclusão</td><td>Timestamp do último envio (P17 ou ponto de saída)</td></tr>
+              <tr><td>Respostas P4 a P16</td><td>Sim · Às vezes · Não (uma por pergunta)</td></tr>
+              <tr><td>Resposta P17</td><td>Valor numérico de 0 a 10</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Regras globais do fluxo</h3>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Gatilho</th><th>Comportamento do sistema</th></tr></thead>
+            <tbody>
+              <tr><td>Ausência de resposta por 3 minutos</td><td>Reenvia a pergunta atual automaticamente, uma única vez</td></tr>
+              <tr><td>Resposta livre (texto fora de botão)</td><td>Envia mensagem de redirecionamento e reenvia a pergunta atual</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Mensagem de redirecionamento: <em>"Olá! Este é um número oficial da Prefeitura do Recife. Por aqui, não conseguimos fazer atendimentos individualizados. Mas você pode nos ajudar avaliando os postos de saúde da cidade — clique no botão abaixo para participar!"</em></p>
       </div>
 
       <!-- Sub: Operação e Campo -->
