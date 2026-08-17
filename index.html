@@ -89,6 +89,12 @@ hr{border:none;border-top:1px solid var(--rule);margin:2.5rem 0}
 }
 .nav-btn:hover{color:var(--text)}
 .nav-btn.active{color:var(--accent);font-weight:700}
+.nav-sub{
+  padding-left:2.5rem;font-size:.76rem;
+  border-left:1px solid var(--rule);margin-left:1.5rem;padding-left:1rem;
+  width:calc(100% - 1.5rem);
+}
+.nav-sub.active{color:var(--accent);font-weight:600}
 
 /* ── main ── */
 .main{margin-left:var(--sidebar);flex:1;min-width:0}
@@ -309,6 +315,10 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
       <button class="nav-btn active" data-tab="intro">Introdução</button>
       <button class="nav-btn" data-tab="recife">Experiência em Recife</button>
       <button class="nav-btn" data-tab="metodologia">Metodologia</button>
+      <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="desenho">Desenho do Estudo</button>
+      <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="perguntas">Instrumento e Perguntas</button>
+      <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="amostral">Plano Amostral</button>
+      <button class="nav-btn nav-sub" data-tab="metodologia" data-sub="operacao">Operação e Campo</button>
       <button class="nav-btn" data-tab="tecnico">1. Aspectos Técnicos</button>
       <button class="nav-btn" data-tab="governanca">2. Governança e Ética</button>
       <button class="nav-btn" data-tab="arquivos">3. Arquivos de Referência</button>
@@ -391,13 +401,6 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
     <div class="page">
       <div class="cover-eyebrow">Metodologia</div>
       <h1>Metodologia do Inquérito</h1>
-
-      <nav class="sub-nav" id="subNav">
-        <button class="sub-btn active" data-sub="desenho">Desenho do Estudo</button>
-        <button class="sub-btn" data-sub="perguntas">Instrumento e Perguntas</button>
-        <button class="sub-btn" data-sub="amostral">Plano Amostral</button>
-        <button class="sub-btn" data-sub="operacao">Operação e Campo</button>
-      </nav>
 
       <!-- Sub: Desenho -->
       <div class="sub-panel active" id="sub-desenho">
@@ -814,17 +817,46 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
 (function(){
   var btns=document.querySelectorAll('.nav-btn');
   var panels=document.querySelectorAll('.tab-content');
+  var subPanels=document.querySelectorAll('.sub-panel');
   var sidebar=document.getElementById('sidebar');
   var overlay=document.getElementById('overlay');
   var menuBtn=document.getElementById('menuBtn');
 
-  function activate(id){
-    btns.forEach(function(b){b.classList.toggle('active',b.dataset.tab===id)});
+  function activateSub(sid){
+    btns.forEach(function(b){
+      if(b.classList.contains('nav-sub')){
+        b.classList.toggle('active',b.dataset.sub===sid);
+      }
+    });
+    subPanels.forEach(function(p){p.classList.toggle('active',p.id==='sub-'+sid)});
+  }
+
+  function activate(id, sub){
+    // main tab
+    btns.forEach(function(b){
+      if(!b.classList.contains('nav-sub')){
+        b.classList.toggle('active',b.dataset.tab===id);
+      }
+    });
     panels.forEach(function(p){p.classList.toggle('active',p.id==='tab-'+id)});
+    // if metodologia, also activate sub
+    if(id==='metodologia'){
+      var target=sub||'desenho';
+      activateSub(target);
+    }
     if(window.innerWidth<=720){sidebar.classList.remove('open');overlay.classList.remove('show')}
   }
 
-  btns.forEach(function(b){b.addEventListener('click',function(){activate(b.dataset.tab)})});
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.classList.contains('nav-sub')){
+        activate('metodologia', b.dataset.sub);
+      } else {
+        activate(b.dataset.tab);
+      }
+    });
+  });
+
   document.querySelectorAll('.sec-btn[data-goto]').forEach(function(c){
     c.addEventListener('click',function(){activate(c.dataset.goto)});
   });
@@ -835,17 +867,6 @@ tr.total td{font-weight:700;color:var(--text);border-top:2px solid var(--rule)}
   });
   overlay.addEventListener('click',function(){
     sidebar.classList.remove('open');overlay.classList.remove('show');
-  });
-
-  // Sub-tabs (Metodologia)
-  var subBtns=document.querySelectorAll('.sub-btn');
-  var subPanels=document.querySelectorAll('.sub-panel');
-  subBtns.forEach(function(sb){
-    sb.addEventListener('click',function(){
-      var sid=sb.dataset.sub;
-      subBtns.forEach(function(x){x.classList.toggle('active',x.dataset.sub===sid)});
-      subPanels.forEach(function(p){p.classList.toggle('active',p.id==='sub-'+sid)});
-    });
   });
 
   var h=location.hash.replace('#','');
